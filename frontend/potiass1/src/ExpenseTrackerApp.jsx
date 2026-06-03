@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { Trash2, Plus, Check, X, Edit2 } from 'lucide-react';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Pie } from 'react-chartjs-2';
-
+import Fuse from 'fuse.js';
 
 import './ExpenseTrackerApp.css';
 
@@ -23,6 +23,8 @@ export default function ExpenseTrackerApp() {
   const [editingId, setEditingId] = useState(null);
   const [editText, setEditText] = useState(null);
   const [fieldName, setFieldName] = useState('');
+  const [searchText, setSearchText] = useState('');
+  const [searchHidden, setSearchHidden] = useState(false);
 
   const inputRef = useRef(null); // To focus the main input after actions
 
@@ -183,7 +185,7 @@ export default function ExpenseTrackerApp() {
     let cost = 0.0;
     for(let i = 0; i < expenses.length; i++){
         cost += parseFloat(expenses[i].cost * expenses[i].amount);
-        console.log(cost);
+        //console.log(cost);
     }
     //console.log(cost);
     return cost;
@@ -209,7 +211,7 @@ export default function ExpenseTrackerApp() {
   }
 
   //helper func that converts teh category cost map in to an array and that uses it to dynamically generate and return a list
-  const categoryCostList = (category_costs) => {
+  const createCategoryCostList = (category_costs) => {
     return (
       <ul>
         {(Array.from(category_costs.entries()).map((entry, index) => (
@@ -219,17 +221,77 @@ export default function ExpenseTrackerApp() {
     )
   }
 
+//helper function that takes the expenses list and filters it based on search input
+  const createFilteredExpenseList = () => {
+    if(searchText.trim() === '') return ( <p>Search is empty...</p> );
+
+    //set up search to search against alphabetical categories (with weights) in expenses
+    const searchTitles = new Fuse(expenses, 
+      {
+        threshold: 0.4,
+        keys: 
+      [ {name: 'title', weight: 2},
+        {name: 'category', weight: 0.5},
+        {name: 'desc', weight: 0.2}]
+      });
+    
+    //store search result
+    const result = searchTitles.search(searchText.trim());
+
+    if(result.length === 0) return (<p>No items found!</p>)
+    console.log(result);
+
+    //note that search returns a list of items that contain an item (an expense in this case) which is why we need .item.
+    return (
+      <ul className="filtered-expense-list">
+        {result.map((resultItem) => (
+          <li key={resultItem.item.id} className="filtered-expense">
+            <span className="filtered-expense-text">
+              {resultItem.item.title}
+            </span>
+            <span className="filtered-expense-text">
+              {resultItem.item.category}
+            </span>
+            <span className="filtered-expense-text">
+              {resultItem.item.amount}
+            </span>
+            <span className="filtered-expense-text">
+              {resultItem.item.cost}
+            </span>
+            <span className="filtered-expense-text">
+              {resultItem.item.desc}
+            </span>
+            <span className="filtered-expense-text">
+              {resultItem.item.description}
+            </span>
+          </li>
+        ))}
+      </ul>
+    )
+  }
+
+  const hideSearches = () => {
+    setSearchHidden(!searchHidden);
+    document.getElementById("searchList").classList.toggle("hide");
+  }
+
+  const getArrowSymbol = () => {
+    //console.log("asking for arrow");
+    if(searchHidden) return ('↑');
+    else return ('↓');
+  }
+
   //using chart.js like recommended by tutor  
   //createChartFromCategoryCost = (category_costs) => {
   const createChart = (category_costs) => {
 
   let labelslist = [];
   Array.from(category_costs.entries()).map((entry, index) => ( labelslist.push(entry[0]) ))
-  console.log(labelslist);
+  //console.log(labelslist);
 
   let datalist = [];
   Array.from(category_costs.entries()).map((entry, index) => ( datalist.push(entry[1]) ))
-  console.log(datalist);
+  //console.log(datalist);
 
   let data = {
     labels: labelslist,
@@ -461,7 +523,23 @@ export default function ExpenseTrackerApp() {
           )}
         </div>
         <div className="search-container">
-          <p>Search for specific expenses:</p>
+          <div className="search-bar-container">
+          <p>Search for an expense:</p>
+            <input
+              type="text"
+              ref={inputRef} // attaching the ref here
+              value={searchText}
+              onChange={(e) => setSearchText(e.target.value)}
+              placeholder="Name of expense?"
+              className="search-bar"
+              disabled={editingId !== null}
+            />
+            <button onClick={hideSearches} className="hide-button">{getArrowSymbol()}</button>
+          </div>
+          <div className="break"></div>
+          <div id="searchList" className="filtered-expense-list">
+            <span className="filtered-expense-span">{createFilteredExpenseList()}</span>
+          </div>
         </div>
 
         {expenses.length > 0 && (
@@ -475,7 +553,7 @@ export default function ExpenseTrackerApp() {
               </ul>
               <br/>
               <p>Your costs by category are listed below:</p>
-              <span>{categoryCostList(costOverCategories)}</span>
+              <span className="searchContent">{createCategoryCostList(costOverCategories)}</span>
               </div>
               <div className="item-bg">
                 { createChart(calculateCostOverCategories()) }
