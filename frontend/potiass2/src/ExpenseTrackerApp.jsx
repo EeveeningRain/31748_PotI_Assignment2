@@ -53,6 +53,16 @@ export default function ExpenseTrackerApp() {
 
   //add expense logic, note need to grab input from multiple fields
   const addExpense = async () => {
+    if(isNaN(parseInt(amount.trim()))){
+      alert("Error: Amount was not a number. Please try again.");
+      return;
+    }
+
+    if(isNaN(parseFloat(cost.trim()))){
+      alert
+    }
+
+
     if (input.trim()) {
       try {
         const response = await fetch(API_BASE_URL, {
@@ -122,31 +132,19 @@ export default function ExpenseTrackerApp() {
 
   //take input data, insert in to specified property in "body" aka table
   const saveEdit = async () => {
-    //different case for if we're editing the numeric values
-    // if(editText === expense.amount || editText === expense.cost){
-    //   const expenseToEdit = expenses.find(expense => expense.id === editingId);
-    //   if (expenseToEdit !== undefined) {
-    //     try {
-    //       const response = await fetch(`${API_BASE_URL}/${editingId}`, {
-    //         method: 'PUT',
-    //         headers: {
-    //           'Content-Type': 'application/json',
-    //         },
-    //         body: JSON.stringify({
-    //           ...expenseToEdit,
-    //           [fieldName]: editText,
-    //         })
-    //       })
-    //     } catch (error) {
-    //       alert("Error saving a numeric edit to a field in an expense.");
-    //       alert(error);
-    //     }
-    //   }
-    // }
+    // case for if we're editing the numeric values
 
     //otherwise, edit string vals
     if (editText.trim()) {
       const expenseToEdit = expenses.find(expense => expense.id === editingId);
+      //if we're editing numerics, then double check input
+      if(fieldName === 'amount'|| fieldName === 'cost'){
+        if(isNaN(editText.trim())){
+          alert("Error: Input value is not a number. Please try again.");
+          return;
+        }
+      }
+
       if (expenseToEdit !== undefined) {
 
         try {
@@ -215,7 +213,7 @@ export default function ExpenseTrackerApp() {
     return (
       <ul>
         {(Array.from(category_costs.entries()).map((entry, index) => (
-          <li key={entry}>"{entry[0]}" costed ${entry[1]} across all expenses!</li>
+          <li key={entry}>"{entry[0]}" costed ${entry[1].toFixed(2)} across all expenses!</li>
         )))}
       </ul>
     )
@@ -270,7 +268,7 @@ export default function ExpenseTrackerApp() {
     <div className="app-container">
       <div className="app-wrapper">
         <div className="header">
-          <h1 className="header-title">My expenses</h1>
+          <h1 className="header-title">"User's" Expenses</h1>
           <p className="header-subtitle">Stay organized and on budget!</p>
         </div>
 
