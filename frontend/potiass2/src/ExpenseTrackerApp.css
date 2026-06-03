@@ -401,6 +401,15 @@ li {
   margin-left: 1.5rem;
 }
 
+.search_container{
+  display:flex;
+  background: linear-gradient(135deg, #071B37 0%, #0c2c58 100%);
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  color:white;
+}
+
 /* Responsive */
 @media (max-width: 1000px) {
   .app-container {

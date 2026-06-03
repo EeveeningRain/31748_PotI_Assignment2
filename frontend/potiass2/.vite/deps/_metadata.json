@@ -1,43 +1,43 @@
 {
-  "hash": "5e1afdf9",
-  "configHash": "bed4ba20",
+  "hash": "05a2c74d",
+  "configHash": "be5ef9c3",
   "lockfileHash": "8e4bccbb",
-  "browserHash": "85e4c16b",
+  "browserHash": "b800f7fb",
   "optimized": {
     "chart.js": {
       "src": "../../node_modules/chart.js/dist/chart.js",
       "file": "chart__js.js",
-      "fileHash": "65080406",
+      "fileHash": "7ffa694d",
       "needsInterop": false
     },
     "lucide-react": {
       "src": "../../node_modules/lucide-react/dist/esm/lucide-react.js",
       "file": "lucide-react.js",
-      "fileHash": "0646d39e",
+      "fileHash": "a0832ecf",
       "needsInterop": false
     },
     "react-chartjs-2": {
       "src": "../../node_modules/react-chartjs-2/dist/index.js",
       "file": "react-chartjs-2.js",
-      "fileHash": "4016c1a5",
+      "fileHash": "58566f87",
       "needsInterop": false
     },
     "react-dom/client": {
       "src": "../../node_modules/react-dom/client.js",
       "file": "react-dom_client.js",
-      "fileHash": "7de71a7e",
+      "fileHash": "64d33000",
       "needsInterop": true
     },
     "react": {
       "src": "../../node_modules/react/index.js",
       "file": "react.js",
-      "fileHash": "aa139429",
+      "fileHash": "9d8f3a6d",
       "needsInterop": true
     },
     "react/jsx-dev-runtime": {
       "src": "../../node_modules/react/jsx-dev-runtime.js",
       "file": "react_jsx-dev-runtime.js",
-      "fileHash": "1b802600",
+      "fileHash": "5189abeb",
       "needsInterop": true
     }
   },

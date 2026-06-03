@@ -460,6 +460,10 @@ export default function ExpenseTrackerApp() {
             </ul>
           )}
         </div>
+        <div className="search-container">
+          <p>Search for specific expenses:</p>
+        </div>
+
         {expenses.length > 0 && (
           <div className="stats">
             <div className="container-no-bg">
