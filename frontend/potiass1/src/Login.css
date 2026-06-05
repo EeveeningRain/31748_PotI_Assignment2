@@ -4,13 +4,13 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-color: #f4f7f6;
+  background: linear-gradient(135deg, #103c0a 0%, #08aa5e 100%);
   font-family: 'Inter', sans-serif;
 }
 
 /* The Card */
 .login-card {
-  background: #ffffff;
+  background: linear-gradient(135deg, #071B37 0%, #0c2c58 100%);
   padding: 2.5rem;
   border-radius: 12px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
@@ -21,11 +21,11 @@
 
 .login-card h2 {
   margin-bottom: 0.5rem;
-  color: #333;
+  color: white;
 }
 
 .login-card p {
-  color: #777;
+  color: #d8d8d8;
   font-size: 0.9rem;
   margin-bottom: 2rem;
 }
@@ -34,6 +34,7 @@
 .input-group {
   text-align: left;
   margin-bottom: 1.5rem;
+  
 }
 
 .input-group label {
@@ -41,7 +42,7 @@
   font-size: 0.85rem;
   font-weight: 600;
   margin-bottom: 0.5rem;
-  color: #555;
+  color: #d3d3d3;
 }
 
 .input-group input {
@@ -62,8 +63,8 @@
 .login-button {
   width: 100%;
   padding: 0.75rem;
-  background-color: #4a90e2;
-  color: white;
+  background-color: gold;
+  color: rgb(15, 0, 92);
   border: none;
   border-radius: 6px;
   font-size: 1rem;
@@ -73,16 +74,20 @@
 }
 
 .login-button:hover {
-  background-color: #357abd;
+  background-color: rgb(248, 225, 95)
+}
+
+.login-button:disabled {
+  background-color: rgb(86, 73, 0)
 }
 
 .login-footer {
   margin-top: 1.5rem;
   font-size: 0.85rem;
-  color: #888;
+  color: #c2c2c2;
 }
 
 .login-footer a {
-  color: #4a90e2;
+  color: gold;
   text-decoration: none;
 }
