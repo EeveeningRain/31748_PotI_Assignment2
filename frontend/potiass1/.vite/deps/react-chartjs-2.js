@@ -1,5 +1,5 @@
-import { n as __commonJSMin, t as require_react } from "./react-D6Dgw-OC.js";
-import { C as RadarController, E as ScatterController, S as PolarAreaController, b as PieController, c as BubbleController, g as LineController, i as BarController, p as DoughnutController, u as Chart$1 } from "./chart-vNLaWCV3.js";
+import { i as __toESM, n as __commonJSMin, t as require_react } from "./react-BDWiK9rz.js";
+import { C as RadarController, E as ScatterController, S as PolarAreaController, b as PieController, c as BubbleController, g as LineController, i as BarController, p as DoughnutController, u as Chart$1 } from "./chart-xyae3Kdt.js";
 //#region node_modules/react/cjs/react-jsx-runtime.development.js
 /**
 * @license React
@@ -203,7 +203,7 @@ var require_react_jsx_runtime_development = /* @__PURE__ */ __commonJSMin(((expo
 var import_jsx_runtime = (/* @__PURE__ */ __commonJSMin(((exports, module) => {
 	module.exports = require_react_jsx_runtime_development();
 })))();
-var import_react = require_react();
+var import_react = /* @__PURE__ */ __toESM(require_react(), 1);
 var defaultDatasetIdKey = "label";
 function reforwardRef(ref, value) {
 	if (typeof ref === "function") ref(value);

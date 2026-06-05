@@ -1,53 +1,69 @@
 {
-  "hash": "05a2c74d",
-  "configHash": "be5ef9c3",
-  "lockfileHash": "8e4bccbb",
-  "browserHash": "b800f7fb",
+  "hash": "d78e52dc",
+  "configHash": "00ab333d",
+  "lockfileHash": "8845d1c7",
+  "browserHash": "693d0e40",
   "optimized": {
     "chart.js": {
       "src": "../../node_modules/chart.js/dist/chart.js",
       "file": "chart__js.js",
-      "fileHash": "7ffa694d",
+      "fileHash": "d5659654",
+      "needsInterop": false
+    },
+    "fuse.js": {
+      "src": "../../node_modules/fuse.js/dist/fuse.mjs",
+      "file": "fuse__js.js",
+      "fileHash": "3641a5ce",
       "needsInterop": false
     },
     "lucide-react": {
       "src": "../../node_modules/lucide-react/dist/esm/lucide-react.js",
       "file": "lucide-react.js",
-      "fileHash": "a0832ecf",
+      "fileHash": "85ccd02c",
       "needsInterop": false
     },
     "react-chartjs-2": {
       "src": "../../node_modules/react-chartjs-2/dist/index.js",
       "file": "react-chartjs-2.js",
-      "fileHash": "58566f87",
+      "fileHash": "cb8cb728",
       "needsInterop": false
     },
     "react-dom/client": {
       "src": "../../node_modules/react-dom/client.js",
       "file": "react-dom_client.js",
-      "fileHash": "64d33000",
+      "fileHash": "553f4bfd",
       "needsInterop": true
+    },
+    "react-router-dom": {
+      "src": "../../node_modules/react-router-dom/dist/index.js",
+      "file": "react-router-dom.js",
+      "fileHash": "9823cbbb",
+      "needsInterop": false
     },
     "react": {
       "src": "../../node_modules/react/index.js",
       "file": "react.js",
-      "fileHash": "9d8f3a6d",
+      "fileHash": "3bed4a48",
       "needsInterop": true
     },
     "react/jsx-dev-runtime": {
       "src": "../../node_modules/react/jsx-dev-runtime.js",
       "file": "react_jsx-dev-runtime.js",
-      "fileHash": "5189abeb",
+      "fileHash": "cbaff762",
       "needsInterop": true
     }
   },
   "chunks": {
-    "chart-vNLaWCV3": {
-      "file": "chart-vNLaWCV3.js",
+    "chart-xyae3Kdt": {
+      "file": "chart-xyae3Kdt.js",
       "isDynamicEntry": false
     },
-    "react-D6Dgw-OC": {
-      "file": "react-D6Dgw-OC.js",
+    "react-BDWiK9rz": {
+      "file": "react-BDWiK9rz.js",
+      "isDynamicEntry": false
+    },
+    "react-dom-CQ09sKIc": {
+      "file": "react-dom-CQ09sKIc.js",
       "isDynamicEntry": false
     }
   }
