@@ -20,6 +20,7 @@ class Expense(SQLModel, table=True):
     date: str = Field(max_length=25)
     desc: str = Field(max_length=256) 
 
+
 # If the database and table already exist, it will do nothing to those existing tables
 SQLModel.metadata.create_all(engine)
 

@@ -2,6 +2,8 @@ from fastapi import FastAPI, HTTPException, Depends, Response, status
 from typing import List
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
+from contextlib import asynccontextmanager
+from pydantic import BaseModel
 
 from sqlmodel import Session
 from to_do_app_crud import (
@@ -33,7 +35,33 @@ app.add_middleware(
     allow_headers=["*"],  # Allows all headers
 )
 
+# login stuff from lab
+class LoginRequest(BaseModel):
+    username: str
+    password: str
+
+users_db = {"admin@example.com": "admin", "testuser@example.com": "testuser"}
+
 # --- Endpoints ---
+
+@app.post("/login")
+async def login(data: LoginRequest):
+    # Retrieve the password for the given username
+    stored_password = users_db.get(data.username)
+
+    # Check if user exists and password matches
+    if stored_password and stored_password == data.password:
+        return {
+            "status": "success",
+            "message": f"Welcome back, {data.username}!",
+            "user": data.username,
+            "token": "fake-jwt-token-for-" + data.username,  # In a real app, generate a JWT or similar token
+        }
+
+    # If anything fails, throw a 401 Unauthorized error
+    raise HTTPException(
+        status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid username or password"
+    )
 
 
 @app.get("/expenses", response_model=List[Expense])

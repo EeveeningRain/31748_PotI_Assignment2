@@ -33,6 +33,13 @@ body {
   background-size: 100% 100%;
   padding-top:1.5rem;
   padding-bottom:1.5rem;
+  display:flex;
+  gap: 10%;
+
+}
+
+.header-div {
+  margin-left:22%;
 }
 
 .header-title {
@@ -95,7 +102,6 @@ body {
   cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
   transition: transform 0.2s, box-shadow 0.2s;
 }
 
@@ -109,6 +115,36 @@ body {
 }
 
 .add-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+  background: #9ca3af;
+}
+
+.logout-button {
+  min-width: 0;
+  background: linear-gradient(135deg, #071B37 0%, #0c2c58 100%);
+  color: white;
+  padding: 2rem 2rem;
+  margin:0.1rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  flex:50%;
+  align-items: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.logout-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.logout-button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.logout-button:disabled {
   cursor: not-allowed;
   opacity: 0.5;
   background: #9ca3af;
@@ -512,6 +548,30 @@ li {
   padding-left: 10px;
 }
 
+@media (max-width: 1200px){
+  .header-div {
+  margin-left:15%;
+
+  }
+
+  .header{
+    gap:5%;
+  }
+
+  .header-title {
+  font-size: 2.25rem;
+}
+
+.header-subtitle {
+  font-size: 1rem;
+}
+
+.logout-button {
+  font-size: 0.5rem;
+  padding: 1.5rem 1.5rem;
+}
+}
+
 /* Responsive */
 @media (max-width: 1000px) {
   .app-container {
@@ -538,6 +598,12 @@ li {
   }
 
   .add-button {
+    font-size: 0.85rem;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .login-button {
     font-size: 0.85rem;
     width: 100%;
     justify-content: center;

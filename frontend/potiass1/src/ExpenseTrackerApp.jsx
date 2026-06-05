@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { Trash2, Plus, Check, X, Edit2 } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Pie } from 'react-chartjs-2';
 import Fuse from 'fuse.js';
@@ -28,6 +29,9 @@ export default function ExpenseTrackerApp() {
 
   const inputRef = useRef(null); // To focus the main input after actions
 
+  const navigate = useNavigate(); // 1. Initialize the hook
+
+
   // (Re-)fetch the Expenses from the backend whenever expenses are changed.
   useEffect(() => {
     // fetch expenses from the backend API
@@ -42,6 +46,13 @@ export default function ExpenseTrackerApp() {
     setCostOverCategories(calculateCostOverCategories());
   }, [expenses]);
 
+  // Logout function: Clears auth data and resets state, then navigates to login page
+  const handleLogout = () => {
+    sessionStorage.removeItem('user');
+    sessionStorage.removeItem('password');
+    navigate('/login', { replace: true });
+  };
+
   // used for the useEffect hook, grabs expenses from api url
   const fetchExpenses = async () => {
     try {
@@ -49,6 +60,7 @@ export default function ExpenseTrackerApp() {
       const data = await response.json();
       setExpenses(data);
     } catch (error) {
+      alert("Error, could not fetch expenses! May be something wrong with API connection.");
       console.error("Fetch error:", error);
     }
   };
@@ -61,7 +73,7 @@ export default function ExpenseTrackerApp() {
     }
 
     if(isNaN(parseFloat(cost.trim()))){
-      alert
+      alert("Error: Amount was not a number. Please try again.");
     }
 
 
@@ -330,8 +342,13 @@ export default function ExpenseTrackerApp() {
     <div className="app-container">
       <div className="app-wrapper">
         <div className="header">
-          <h1 className="header-title">"User's" Expenses</h1>
+          <div className="header-div">
+          <h1 className="header-title">{sessionStorage.getItem('user')}'s Expenses</h1>
           <p className="header-subtitle">Stay organized and on budget!</p>
+          </div>
+          <div>
+          <button className="logout-button" onClick={handleLogout}>Logout</button>
+          </div>
         </div>
 
         <div className="input-section">
